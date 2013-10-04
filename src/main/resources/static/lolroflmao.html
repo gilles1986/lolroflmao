@@ -38,77 +38,7 @@
       var I = this;
     }
 
-    function Hero(name) {
 
-      this.name = name;
-      this.direction = "down";
-      this.location = {
-        "x" : 0,
-        "y" : 0
-      };
-
-      var heroPicCoords = {
-        "x" : "",
-        "y" : ""
-      };
-
-      this.getHeroPicCoords = function() {
-        return heroPicCoords;
-      };
-
-      var charsPerLine = 4;
-      var charLines = 2;
-      var charsize = 32;
-
-      var getRandomCharacter = function() {
-        heroPicCoords.x = Math.round(Math.random() * (charsPerLine-1));
-        heroPicCoords.y = Math.round(Math.random() * (charLines-1));
-
-      }
-
-
-      var directionToNumber = function(dir) {
-        switch(dir) {
-          case "up":
-            return 3;
-          case "right" :
-            return 2;
-          case "down" :
-            return 0;
-          case "left" :
-            return 1;
-        }
-      };
-
-      this.draw = function() {
-        // x cord +1 because of middle Graphic
-
-        var xclip = (((heroPicCoords.x * 3)+ 1) * charsize);
-        var yclip = ((heroPicCoords.y * 4)*charsize)+(directionToNumber(I.direction)* charsize);
-
-        console.debug(xclip, yclip);
-
-        canvas.drawImage(charset.set,
-            xclip,
-            yclip,
-            charsize, charsize,
-            I.location.x,
-            I.location.y,
-            charsize, charsize);
-      };
-
-      this.update = function() {
-
-      };
-
-
-
-      var I = this;
-
-      getRandomCharacter();
-
-
-    }
 
 
 

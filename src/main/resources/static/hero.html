@@ -72,6 +72,84 @@
         Game.direction = 'none';
         Game.gridSize = 10;
 
+
+
+        function Hero() {
+
+          this.name = 'unnamed';
+          this.direction = "down";
+          this.location = {
+            "x" : 0,
+            "y" : 0
+          };
+
+          var heroPicCoords = {
+            "x" : "",
+            "y" : ""
+          };
+
+          this.getHeroPicCoords = function() {
+            return heroPicCoords;
+          };
+
+          var charsPerLine = 4;
+          var charLines = 2;
+          var charsize = 32;
+
+          var getRandomCharacter = function() {
+            heroPicCoords.x = Math.round(Math.random() * (charsPerLine-1));
+            heroPicCoords.y = Math.round(Math.random() * (charLines-1));
+
+          }
+
+
+          var directionToNumber = function(dir) {
+            switch(dir) {
+              case "up":
+                return 3;
+              case "right" :
+                return 2;
+              case "down" :
+                return 0;
+              case "left" :
+                return 1;
+            }
+          };
+
+          this.draw = function(context) {
+            // x cord +1 because of middle Graphic
+
+            var xclip = (((heroPicCoords.x * 3)+ 1) * charsize);
+            var yclip = ((heroPicCoords.y * 4)*charsize)+(directionToNumber(I.direction)* charsize);
+
+            console.debug(xclip, yclip);
+
+            context.drawImage(charset.set,
+                xclip,
+                yclip,
+                charsize, charsize,
+                I.location.x,
+                I.location.y,
+                charsize, charsize);
+          };
+
+          this.update = function() {
+
+          };
+
+
+
+          var I = this;
+
+          getRandomCharacter();
+
+
+        }
+
+
+
+
+
         function Snake() {
             this.snakeBody = [];
             this.color = null;
@@ -151,18 +229,17 @@
             }
         };
 
-        Game.addSnake = function(id, color) {
-            Game.entities[id] = new Snake();
-            Game.entities[id].color = color;
+        Game.addHero = function(id, color) {
+            Game.entities[id] = new Hero();
         };
 
-        Game.updateSnake = function(id, snakeBody) {
+        Game.updateHero = function(id, location) {
             if (typeof Game.entities[id] != "undefined") {
-                Game.entities[id].snakeBody = snakeBody;
+                Game.entities[id].location = location;
             }
         };
 
-        Game.removeSnake = function(id) {
+        Game.removeHero = function(id) {
             Game.entities[id] = null;
             // Force GC.
             delete Game.entities[id];
@@ -183,7 +260,7 @@
         })();
 
         Game.connect = (function() {
-        	Game.socket = new SockJS("/snake");
+        	Game.socket = new SockJS("/hero");
 
             Game.socket.onopen = function () {
                 // Socket open.. start the game loop.
@@ -207,16 +284,16 @@
                 switch (packet.type) {
                     case 'update':
                         for (var i = 0; i < packet.data.length; i++) {
-                            Game.updateSnake(packet.data[i].id, packet.data[i].body);
+                            Game.updateHero(packet.data[i].id, packet.data[i].body);
                         }
                         break;
                     case 'join':
                         for (var j = 0; j < packet.data.length; j++) {
-                            Game.addSnake(packet.data[j].id, packet.data[j].color);
+                            Game.addHero(packet.data[j].id, packet.data[j].color);
                         }
                         break;
                     case 'leave':
-                        Game.removeSnake(packet.id);
+                        Game.removeHero(packet.id);
                         break;
                     case 'dead':
                         Console.log('Info: Your snake is dead, bad luck!');

@@ -94,7 +94,7 @@
         function Hero() {
 
           this.name = 'unnamed';
-          this.direction = "down";
+          this.direction = "south";
           this.location = {
             "x" : 0,
             "y" : 0
@@ -122,13 +122,13 @@
 
           var directionToNumber = function(dir) {
             switch(dir) {
-              case "up":
+              case "north":
                 return 3;
-              case "right" :
+              case "east" :
                 return 2;
-              case "down" :
+              case "south" :
                 return 0;
-              case "left" :
+              case "west" :
                 return 1;
             }
           };
@@ -250,9 +250,14 @@
             Game.entities[id] = new Hero();
         };
 
-        Game.updateHero = function(id, location) {
+        Game.updateHero = function(id, location, direction) {
             if (typeof Game.entities[id] != "undefined") {
+                if(direction != "NONE") {
+                  Game.entities[id].direction = direction.toLowerCase();
+                }
+
                 Game.entities[id].location = location[0];
+
             }
         };
 
@@ -301,7 +306,7 @@
                 switch (packet.type) {
                     case 'update':
                         for (var i = 0; i < packet.data.length; i++) {
-                            Game.updateHero(packet.data[i].id, packet.data[i].body);
+                            Game.updateHero(packet.data[i].id, packet.data[i].body, packet.data[i].direction);
                         }
                         break;
                     case 'join':

@@ -16,12 +16,12 @@
  */
 package lolroflmao.boot.websocket.hero;
 
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
-
-import lolroflmao.web.socket.TextMessage;
-import lolroflmao.web.socket.WebSocketSession;
 
 
 public class Hero {

@@ -16,19 +16,19 @@
 
 package lolroflmao.boot.websocket.config;
 
-import lolroflmao.boot.SpringApplication;
-import lolroflmao.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import lolroflmao.boot.websocket.client.GreetingService;
 import lolroflmao.boot.websocket.client.SimpleGreetingService;
 import lolroflmao.boot.websocket.echo.DefaultEchoService;
 import lolroflmao.boot.websocket.echo.EchoService;
 import lolroflmao.boot.websocket.echo.EchoWebSocketHandler;
-import lolroflmao.boot.websocket.snake.SnakeWebSocketHandler;
-import lolroflmao.boot.web.SpringBootServletInitializer;
-import lolroflmao.context.annotation.Bean;
-import lolroflmao.context.annotation.Configuration;
-import lolroflmao.web.socket.WebSocketHandler;
-import lolroflmao.web.socket.support.PerConnectionWebSocketHandler;
+import lolroflmao.boot.websocket.hero.HeroWebSocketHandler;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.support.PerConnectionWebSocketHandler;
 
 @Configuration
 @EnableAutoConfiguration
@@ -60,7 +60,7 @@ public class SampleWebSocketsApplication extends SpringBootServletInitializer {
 
 	@Bean(name = "/snake")
 	public WebSocketHandler snakeWebSocketHandler() {
-		return new PerConnectionWebSocketHandler(SnakeWebSocketHandler.class);
+		return new PerConnectionWebSocketHandler(HeroWebSocketHandler.class);
 	}
 
 }

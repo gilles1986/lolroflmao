@@ -16,15 +16,15 @@
  */
 package lolroflmao.boot.websocket.hero;
 
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.adapter.TextWebSocketHandlerAdapter;
+
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import lolroflmao.web.socket.CloseStatus;
-import lolroflmao.web.socket.TextMessage;
-import lolroflmao.web.socket.WebSocketSession;
-import lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
 
 public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
 

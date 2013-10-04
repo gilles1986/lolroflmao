@@ -19,12 +19,13 @@ import java.util.concurrent.CountDownLatch;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import lolroflmao.beans.factory.annotation.Autowired;
-import lolroflmao.web.socket.TextMessage;
-import lolroflmao.web.socket.WebSocketSession;
-import lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.adapter.TextWebSocketHandlerAdapter;
 
-public class SimpleClientWebSocketHandler extends TextWebSocketHandlerAdapter {
+public class
+    SimpleClientWebSocketHandler extends TextWebSocketHandlerAdapter {
 
 	protected Log logger = LogFactory.getLog(SimpleClientWebSocketHandler.class);
 

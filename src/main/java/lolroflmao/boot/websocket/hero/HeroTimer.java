@@ -41,6 +41,10 @@ public class HeroTimer {
     private static final ConcurrentHashMap<Integer, Hero> heroes =
             new ConcurrentHashMap<Integer, Hero>();
 
+    private static final ConcurrentHashMap<Integer, Bullet> bullets =
+            new ConcurrentHashMap<Integer, Bullet>();
+
+
     public static synchronized void addSnake(Hero snake) {
         if (heroes.size() == 0) {
             startTimer();
@@ -48,9 +52,17 @@ public class HeroTimer {
         heroes.put(Integer.valueOf(snake.getId()), snake);
     }
 
+    public static synchronized void addBullet(Bullet bullet) {
+        bullets.put(Integer.valueOf(bullet.getId()), bullet);
+    }
+
 
     public static Collection<Hero> getHeroes() {
         return Collections.unmodifiableCollection(heroes.values());
+    }
+
+    public static Collection<Bullet> getBullets() {
+        return Collections.unmodifiableCollection(bullets.values());
     }
 
 
@@ -59,6 +71,10 @@ public class HeroTimer {
         if (heroes.size() == 0) {
             stopTimer();
         }
+    }
+
+    public static synchronized void removeBullet(Bullet bullet) {
+        bullets.remove(Integer.valueOf(bullet.getId()));
     }
 
 

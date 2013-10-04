@@ -34,7 +34,6 @@ public class Hero {
     private Direction direction;
     private int length = DEFAULT_LENGTH;
     private Map head;
-    private final Deque<Map> tail = new ArrayDeque<Map>();
     private final String hexColor;
     private final String name;
 
@@ -49,7 +48,6 @@ public class Hero {
     private void resetState() {
         this.direction = Direction.NONE;
         this.head = HeroUtils.getRandomLocation();
-        this.tail.clear();
         this.length = DEFAULT_LENGTH;
     }
 
@@ -83,10 +81,6 @@ public class Hero {
             nextLocation.y = HeroUtils.PLAYFIELD_HEIGHT;
         }
         if (direction != Direction.NONE) {
-            tail.addFirst(head);
-            if (tail.size() > length) {
-                tail.removeLast();
-            }
             head = nextLocation;
         }
 
@@ -96,8 +90,7 @@ public class Hero {
     private void handleCollisions(Collection<Hero> heroes) throws Exception {
         for (Hero hero : heroes) {
             boolean headCollision = id != hero.id && hero.getHead().equals(head);
-            boolean tailCollision = hero.getTail().contains(head);
-            if (headCollision || tailCollision) {
+            if (headCollision) {
                 kill();
                 if (id != hero.id) {
                     hero.reward();
@@ -108,10 +101,6 @@ public class Hero {
 
     public synchronized Map getHead() {
         return head;
-    }
-
-    public synchronized Collection<Map> getTail() {
-        return tail;
     }
 
     public synchronized void setDirection(Direction direction) {
@@ -126,11 +115,6 @@ public class Hero {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("{x: %d, y: %d}",
                 Integer.valueOf(head.x), Integer.valueOf(head.y)));
-        for (Map location : tail) {
-            sb.append(',');
-            sb.append(String.format("{x: %d, y: %d}",
-                    Integer.valueOf(location.x), Integer.valueOf(location.y)));
-        }
         return String.format("{'id':%d,'body':[%s]}",
                 Integer.valueOf(id), sb.toString());
     }

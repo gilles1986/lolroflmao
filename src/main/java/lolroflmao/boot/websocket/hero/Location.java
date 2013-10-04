@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lolroflmao.boot.websocket.snake;
+package lolroflmao.boot.websocket.hero;
 
 
 public class Location {

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lolroflmao.boot.websocket.snake;
+package lolroflmao.boot.websocket.hero;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +27,7 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 
 /**
- * Sets up the timer for the multi-player snake game WebSocket example.
+ * Sets up the timer for the multi-player hero game WebSocket example.
  */
 public class HeroTimer {
 

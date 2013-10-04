@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lolroflmao.boot.websocket.snake;
+package lolroflmao.boot.websocket.hero;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
@@ -40,13 +40,13 @@ public class Hero {
     public Hero(int id, WebSocketSession session) {
         this.id = id;
         this.session = session;
-        this.hexColor = SnakeUtils.getRandomHexColor();
+        this.hexColor = HeroUtils.getRandomHexColor();
         resetState();
     }
 
     private void resetState() {
         this.direction = Direction.NONE;
-        this.head = SnakeUtils.getRandomLocation();
+        this.head = HeroUtils.getRandomLocation();
         this.tail.clear();
         this.length = DEFAULT_LENGTH;
     }
@@ -68,17 +68,17 @@ public class Hero {
 
     public synchronized void update(Collection<Hero> snakes) throws Exception {
         Location nextLocation = head.getAdjacentLocation(direction);
-        if (nextLocation.x >= SnakeUtils.PLAYFIELD_WIDTH) {
+        if (nextLocation.x >= HeroUtils.PLAYFIELD_WIDTH) {
             nextLocation.x = 0;
         }
-        if (nextLocation.y >= SnakeUtils.PLAYFIELD_HEIGHT) {
+        if (nextLocation.y >= HeroUtils.PLAYFIELD_HEIGHT) {
             nextLocation.y = 0;
         }
         if (nextLocation.x < 0) {
-            nextLocation.x = SnakeUtils.PLAYFIELD_WIDTH;
+            nextLocation.x = HeroUtils.PLAYFIELD_WIDTH;
         }
         if (nextLocation.y < 0) {
-            nextLocation.y = SnakeUtils.PLAYFIELD_HEIGHT;
+            nextLocation.y = HeroUtils.PLAYFIELD_HEIGHT;
         }
         if (direction != Direction.NONE) {
             tail.addFirst(head);
@@ -91,14 +91,14 @@ public class Hero {
         handleCollisions(snakes);
     }
 
-    private void handleCollisions(Collection<Hero> snakes) throws Exception {
-        for (Hero snake : snakes) {
-            boolean headCollision = id != snake.id && snake.getHead().equals(head);
-            boolean tailCollision = snake.getTail().contains(head);
+    private void handleCollisions(Collection<Hero> heroes) throws Exception {
+        for (Hero hero : heroes) {
+            boolean headCollision = id != hero.id && hero.getHead().equals(head);
+            boolean tailCollision = hero.getTail().contains(head);
             if (headCollision || tailCollision) {
                 kill();
-                if (id != snake.id) {
-                    snake.reward();
+                if (id != hero.id) {
+                    hero.reward();
                 }
             }
         }

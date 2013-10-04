@@ -15,46 +15,4 @@ import java.util.Deque;
  */
 public class Bullet {
 
-    private static final int DEFAULT_LENGTH = 1;
-
-    private final int id;
-
-    private Direction direction;
-    private int length = DEFAULT_LENGTH;
-    private Map head;
-    private final String hexColor;
-
-    public synchronized void update(Collection<Hero> snakes) throws Exception {
-        Map nextLocation = head.getAdjacentLocation(direction);
-        if (nextLocation.x >= HeroUtils.PLAYFIELD_WIDTH) {
-            nextLocation.x = 0;
-        }
-        if (nextLocation.y >= HeroUtils.PLAYFIELD_HEIGHT) {
-            nextLocation.y = 0;
-        }
-        if (nextLocation.x < 0) {
-            nextLocation.x = HeroUtils.PLAYFIELD_WIDTH;
-        }
-        if (nextLocation.y < 0) {
-            nextLocation.y = HeroUtils.PLAYFIELD_HEIGHT;
-        }
-        if (direction != Direction.NONE) {
-            head = nextLocation;
-        }
-
-        handleCollisions(snakes);
-    }
-
-    private void handleCollisions(Collection<Hero> heroes) throws Exception {
-        for (Hero hero : heroes) {
-            boolean headCollision = id != hero.id && hero.getHead().equals(head);
-            if (headCollision) {
-
-            }
-        }
-    }
-
-    public int getId() {
-        return id;
-    }
 }

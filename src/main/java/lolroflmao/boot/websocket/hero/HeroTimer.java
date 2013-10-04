@@ -53,7 +53,7 @@ public class HeroTimer {
     }
 
     public static synchronized void addBullet(Bullet bullet) {
-        bullets.put(Integer.valueOf(bullet.getId()), bullet);
+        //bullets.put(Integer.valueOf(bullet.getId()), bullet);
     }
 
 
@@ -74,7 +74,7 @@ public class HeroTimer {
     }
 
     public static synchronized void removeBullet(Bullet bullet) {
-        bullets.remove(Integer.valueOf(bullet.getId()));
+        //bullets.remove(Integer.valueOf(bullet.getId()));
     }
 
 

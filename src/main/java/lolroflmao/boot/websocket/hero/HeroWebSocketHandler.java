@@ -85,9 +85,9 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
         StringBuilder sb = new StringBuilder();
         for (Iterator<Hero> iterator = HeroTimer.getHeroes().iterator();
                 iterator.hasNext();) {
-            Hero snake = iterator.next();
-            sb.append(String.format("{id: %d, color: '%s'}",
-                    Integer.valueOf(snake.getId()), snake.getHexColor()));
+            Hero figure = iterator.next();
+            sb.append(String.format("{id: %d, name: '%s'}",
+                Integer.valueOf(figure.getId()), figure.getName()));
             if (iterator.hasNext()) {
                 sb.append(',');
             }

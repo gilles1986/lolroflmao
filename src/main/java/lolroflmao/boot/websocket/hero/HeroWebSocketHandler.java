@@ -56,6 +56,15 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
         return new Map(x, y);
     }
 
+    private String randomName() {
+      String[] firstNames = {"Super", "Mega", "Fire", "Water"};
+      String[] lastNames = {"man", "woman", "boy", "girl"};
+      StringBuilder sb = new StringBuilder();
+      sb.append(firstNames[random.nextInt(firstNames.length)])
+          .append(lastNames[random.nextInt(lastNames.length)]);
+
+      return sb.toString();
+    }
 
     private static int roundByGridSize(int value) {
         value = value + (GRID_SIZE / 2);
@@ -86,16 +95,6 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
         HeroTimer.broadcast(String.format("{'type': 'join','data':[%s]}",
                 sb.toString()));
     }
-
-  private String randomName() {
-    String[] firstNames = {"Super", "Mega", "Fire", "Water"};
-    String[] lastNames = {"man", "woman", "boy", "girl"};
-    StringBuilder sb = new StringBuilder();
-    sb.append(firstNames[random.nextInt(firstNames.length)])
-        .append(lastNames[random.nextInt(lastNames.length)]);
-
-    return sb.toString();
-  }
 
 
   @Override

@@ -13,13 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.client;
+package org.lolroflmao.boot.samples.websocket.echo;
 
-public class SimpleGreetingService implements GreetingService {
+public class DefaultEchoService implements EchoService {
+
+	private final String echoFormat;
+
+	public DefaultEchoService(String echoFormat) {
+		this.echoFormat = (echoFormat != null) ? echoFormat : "%s";
+	}
 
 	@Override
-	public String getGreeting() {
-		return "Hello world!";
+	public String getMessage(String message) {
+		return String.format(this.echoFormat, message);
 	}
 
 }

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package org.springframework.boot.samples.websocket.config;
+package org.lolroflmao.boot.samples.websocket.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.samples.websocket.client.GreetingService;
-import org.springframework.boot.samples.websocket.client.SimpleGreetingService;
-import org.springframework.boot.samples.websocket.echo.DefaultEchoService;
-import org.springframework.boot.samples.websocket.echo.EchoService;
-import org.springframework.boot.samples.websocket.echo.EchoWebSocketHandler;
-import org.springframework.boot.samples.websocket.snake.SnakeWebSocketHandler;
-import org.springframework.boot.web.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.support.PerConnectionWebSocketHandler;
+import org.lolroflmao.boot.SpringApplication;
+import org.lolroflmao.boot.autoconfigure.EnableAutoConfiguration;
+import org.lolroflmao.boot.samples.websocket.client.GreetingService;
+import org.lolroflmao.boot.samples.websocket.client.SimpleGreetingService;
+import org.lolroflmao.boot.samples.websocket.echo.DefaultEchoService;
+import org.lolroflmao.boot.samples.websocket.echo.EchoService;
+import org.lolroflmao.boot.samples.websocket.echo.EchoWebSocketHandler;
+import org.lolroflmao.boot.samples.websocket.snake.SnakeWebSocketHandler;
+import org.lolroflmao.boot.web.SpringBootServletInitializer;
+import org.lolroflmao.context.annotation.Bean;
+import org.lolroflmao.context.annotation.Configuration;
+import org.lolroflmao.web.socket.WebSocketHandler;
+import org.lolroflmao.web.socket.support.PerConnectionWebSocketHandler;
 
 @Configuration
 @EnableAutoConfiguration

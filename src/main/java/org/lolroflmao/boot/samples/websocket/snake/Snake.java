@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.snake;
+package org.lolroflmao.boot.samples.websocket.snake;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
 
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
+import org.lolroflmao.web.socket.TextMessage;
+import org.lolroflmao.web.socket.WebSocketSession;
 
 
 public class Snake {

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.snake;
+package org.lolroflmao.boot.samples.websocket.snake;
 
 import java.awt.Color;
 import java.util.Random;

@@ -14,9 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.snake;
-
-import org.springframework.boot.samples.websocket.snake.Direction;
+package org.lolroflmao.boot.samples.websocket.snake;
 
 
 public class Location {

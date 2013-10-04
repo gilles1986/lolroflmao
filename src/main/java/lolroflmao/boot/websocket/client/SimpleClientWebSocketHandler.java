@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lolroflmao.boot.samples.websocket.client;
+package lolroflmao.boot.websocket.client;
 
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.lolroflmao.beans.factory.annotation.Autowired;
-import org.lolroflmao.web.socket.TextMessage;
-import org.lolroflmao.web.socket.WebSocketSession;
-import org.lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
+import lolroflmao.beans.factory.annotation.Autowired;
+import lolroflmao.web.socket.TextMessage;
+import lolroflmao.web.socket.WebSocketSession;
+import lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
 
 public class SimpleClientWebSocketHandler extends TextWebSocketHandlerAdapter {
 

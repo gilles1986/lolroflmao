@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lolroflmao.boot.samples.websocket.echo;
+package lolroflmao.boot.websocket.echo;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,17 +28,17 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lolroflmao.boot.CommandLineRunner;
-import org.lolroflmao.boot.SpringApplication;
-import org.lolroflmao.boot.samples.websocket.client.GreetingService;
-import org.lolroflmao.boot.samples.websocket.client.SimpleClientWebSocketHandler;
-import org.lolroflmao.boot.samples.websocket.client.SimpleGreetingService;
-import org.lolroflmao.boot.samples.websocket.config.SampleWebSocketsApplication;
-import org.lolroflmao.context.ConfigurableApplicationContext;
-import org.lolroflmao.context.annotation.Bean;
-import org.lolroflmao.context.annotation.Configuration;
-import org.lolroflmao.web.socket.client.WebSocketConnectionManager;
-import org.lolroflmao.web.socket.client.endpoint.StandardWebSocketClient;
+import lolroflmao.boot.CommandLineRunner;
+import lolroflmao.boot.SpringApplication;
+import lolroflmao.boot.websocket.client.GreetingService;
+import lolroflmao.boot.websocket.client.SimpleClientWebSocketHandler;
+import lolroflmao.boot.websocket.client.SimpleGreetingService;
+import lolroflmao.boot.websocket.config.SampleWebSocketsApplication;
+import lolroflmao.context.ConfigurableApplicationContext;
+import lolroflmao.context.annotation.Bean;
+import lolroflmao.context.annotation.Configuration;
+import lolroflmao.web.socket.client.WebSocketConnectionManager;
+import lolroflmao.web.socket.client.endpoint.StandardWebSocketClient;
 
 public class SampleWebSocketsApplicationTests {
 

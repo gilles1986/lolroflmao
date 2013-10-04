@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lolroflmao.boot.samples.websocket.snake;
+package lolroflmao.boot.websocket.snake;
 
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.lolroflmao.web.socket.CloseStatus;
-import org.lolroflmao.web.socket.TextMessage;
-import org.lolroflmao.web.socket.WebSocketSession;
-import org.lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
+import lolroflmao.web.socket.CloseStatus;
+import lolroflmao.web.socket.TextMessage;
+import lolroflmao.web.socket.WebSocketSession;
+import lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
 
 public class SnakeWebSocketHandler extends TextWebSocketHandlerAdapter {
 

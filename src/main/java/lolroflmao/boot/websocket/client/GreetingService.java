@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lolroflmao.boot.samples.websocket.echo;
+package lolroflmao.boot.websocket.client;
 
-public interface EchoService {
+public interface GreetingService {
 
-	String getMessage(String message);
+	String getGreeting();
 
 }

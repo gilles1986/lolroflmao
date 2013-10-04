@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lolroflmao.boot.samples.websocket.snake;
+package lolroflmao.boot.websocket.snake;
 
 public enum Direction {
     NONE, NORTH, SOUTH, EAST, WEST

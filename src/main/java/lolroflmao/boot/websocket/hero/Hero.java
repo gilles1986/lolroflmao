@@ -118,6 +118,10 @@ public class Hero {
         this.direction = direction;
     }
 
+    public synchronized void fire() {
+        System.out.println("fire in the hole");
+    }
+
     public synchronized String getLocationsJson() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("{x: %d, y: %d}",

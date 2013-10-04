@@ -37,7 +37,7 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
 
 
     private final int id;
-    private Hero snake;
+    private Hero hero;
 
     public static String getRandomHexColor() {
         float hue = random.nextFloat();
@@ -71,10 +71,10 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
 
     @Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        this.snake = new Hero(id, randomName(), session);
-        HeroTimer.addSnake(snake);
+        this.hero = new Hero(id, randomName(), session);
+        HeroTimer.addSnake(hero);
         StringBuilder sb = new StringBuilder();
-        for (Iterator<Hero> iterator = HeroTimer.getSnakes().iterator();
+        for (Iterator<Hero> iterator = HeroTimer.getHeroes().iterator();
                 iterator.hasNext();) {
             Hero snake = iterator.next();
             sb.append(String.format("{id: %d, color: '%s'}",
@@ -102,20 +102,22 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	String payload = message.getPayload();
         if ("west".equals(payload)) {
-            snake.setDirection(Direction.WEST);
+            hero.setDirection(Direction.WEST);
         } else if ("north".equals(payload)) {
-            snake.setDirection(Direction.NORTH);
+            hero.setDirection(Direction.NORTH);
         } else if ("east".equals(payload)) {
-            snake.setDirection(Direction.EAST);
+            hero.setDirection(Direction.EAST);
         } else if ("south".equals(payload)) {
-            snake.setDirection(Direction.SOUTH);
+            hero.setDirection(Direction.SOUTH);
+        } else if ("fire".equals(payload)) {
+            hero.fire();
         }
     }
 
 
     @Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        HeroTimer.removeSnake(snake);
+        HeroTimer.removeHero(hero);
         HeroTimer.broadcast(String.format("{'type': 'leave', 'id': %d}",
                 Integer.valueOf(id)));
     }

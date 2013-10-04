@@ -38,25 +38,25 @@ public class HeroTimer {
 
     private static final long TICK_DELAY = 100;
 
-    private static final ConcurrentHashMap<Integer, Hero> snakes =
+    private static final ConcurrentHashMap<Integer, Hero> heroes =
             new ConcurrentHashMap<Integer, Hero>();
 
     public static synchronized void addSnake(Hero snake) {
-        if (snakes.size() == 0) {
+        if (heroes.size() == 0) {
             startTimer();
         }
-        snakes.put(Integer.valueOf(snake.getId()), snake);
+        heroes.put(Integer.valueOf(snake.getId()), snake);
     }
 
 
-    public static Collection<Hero> getSnakes() {
-        return Collections.unmodifiableCollection(snakes.values());
+    public static Collection<Hero> getHeroes() {
+        return Collections.unmodifiableCollection(heroes.values());
     }
 
 
-    public static synchronized void removeSnake(Hero snake) {
-        snakes.remove(Integer.valueOf(snake.getId()));
-        if (snakes.size() == 0) {
+    public static synchronized void removeHero(Hero hero) {
+        heroes.remove(Integer.valueOf(hero.getId()));
+        if (heroes.size() == 0) {
             stopTimer();
         }
     }
@@ -64,11 +64,11 @@ public class HeroTimer {
 
     public static void tick() throws Exception {
         StringBuilder sb = new StringBuilder();
-        for (Iterator<Hero> iterator = HeroTimer.getSnakes().iterator();
+        for (Iterator<Hero> iterator = HeroTimer.getHeroes().iterator();
                 iterator.hasNext();) {
-            Hero snake = iterator.next();
-            snake.update(HeroTimer.getSnakes());
-            sb.append(snake.getLocationsJson());
+            Hero hero = iterator.next();
+            hero.update(HeroTimer.getHeroes());
+            sb.append(hero.getLocationsJson());
             if (iterator.hasNext()) {
                 sb.append(',');
             }
@@ -78,8 +78,8 @@ public class HeroTimer {
     }
 
     public static void broadcast(String message) throws Exception {
-        for (Hero snake : HeroTimer.getSnakes()) {
-            snake.sendMessage(message);
+        for (Hero hero : HeroTimer.getHeroes()) {
+            hero.sendMessage(message);
         }
     }
 

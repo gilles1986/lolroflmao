@@ -115,7 +115,7 @@ public class Hero {
     StringBuilder sb = new StringBuilder();
     sb.append(String.format("{x: %d, y: %d}",
         Integer.valueOf(head.x), Integer.valueOf(head.y)));
-    return String.format("{'id':%d,'body':[%s],'direction':%s}",
+    return String.format("{'id':%d,'body':[%s],'direction':'%s'}",
         Integer.valueOf(id), sb.toString(),this.direction);
   }
 

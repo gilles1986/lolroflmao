@@ -17,7 +17,7 @@
 package lolroflmao.boot.websocket.hero;
 
 
-public class Location {
+public class Map {
 
     public int x;
     public int y;
@@ -25,21 +25,21 @@ public class Location {
 	public static final int PLAYFIELD_HEIGHT = 480;
 	public static final int PLAYFIELD_WIDTH = 640;
 
-    public Location(int x, int y) {
+    public Map(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Location getAdjacentLocation(Direction direction) {
+    public Map getAdjacentLocation(Direction direction) {
         switch (direction) {
             case NORTH:
-                return new Location(x, y - Location.GRID_SIZE);
+                return new Map(x, y - Map.GRID_SIZE);
             case SOUTH:
-                return new Location(x, y + Location.GRID_SIZE);
+                return new Map(x, y + Map.GRID_SIZE);
             case EAST:
-                return new Location(x + Location.GRID_SIZE, y);
+                return new Map(x + Map.GRID_SIZE, y);
             case WEST:
-                return new Location(x - Location.GRID_SIZE, y);
+                return new Map(x - Map.GRID_SIZE, y);
             case NONE:
                 // fall through
             default:
@@ -52,7 +52,7 @@ public class Location {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Location location = (Location) o;
+        Map location = (Map) o;
 
         if (x != location.x) return false;
         if (y != location.y) return false;

@@ -33,8 +33,8 @@ public class Hero {
 
     private Direction direction;
     private int length = DEFAULT_LENGTH;
-    private Location head;
-    private final Deque<Location> tail = new ArrayDeque<Location>();
+    private Map head;
+    private final Deque<Map> tail = new ArrayDeque<Map>();
     private final String hexColor;
 
     public Hero(int id, WebSocketSession session) {
@@ -67,7 +67,7 @@ public class Hero {
     }
 
     public synchronized void update(Collection<Hero> snakes) throws Exception {
-        Location nextLocation = head.getAdjacentLocation(direction);
+        Map nextLocation = head.getAdjacentLocation(direction);
         if (nextLocation.x >= HeroUtils.PLAYFIELD_WIDTH) {
             nextLocation.x = 0;
         }
@@ -104,11 +104,11 @@ public class Hero {
         }
     }
 
-    public synchronized Location getHead() {
+    public synchronized Map getHead() {
         return head;
     }
 
-    public synchronized Collection<Location> getTail() {
+    public synchronized Collection<Map> getTail() {
         return tail;
     }
 
@@ -120,7 +120,7 @@ public class Hero {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("{x: %d, y: %d}",
                 Integer.valueOf(head.x), Integer.valueOf(head.y)));
-        for (Location location : tail) {
+        for (Map location : tail) {
             sb.append(',');
             sb.append(String.format("{x: %d, y: %d}",
                     Integer.valueOf(location.x), Integer.valueOf(location.y)));

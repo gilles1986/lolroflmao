@@ -50,10 +50,10 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
     }
 
 
-    public static Location getRandomLocation() {
+    public static Map getRandomLocation() {
         int x = roundByGridSize(random.nextInt(PLAYFIELD_WIDTH));
         int y = roundByGridSize(random.nextInt(PLAYFIELD_HEIGHT));
-        return new Location(x, y);
+        return new Map(x, y);
     }
 
 

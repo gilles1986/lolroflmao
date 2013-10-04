@@ -17,3 +17,6 @@
 
 *.iml
 .idea
+
+# Ignore Maven 
+target

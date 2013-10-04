@@ -71,7 +71,7 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
 
     @Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        this.snake = new Hero(id, session);
+        this.snake = new Hero(id, randomName(), session);
         HeroTimer.addSnake(snake);
         StringBuilder sb = new StringBuilder();
         for (Iterator<Hero> iterator = HeroTimer.getSnakes().iterator();
@@ -87,8 +87,18 @@ public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
                 sb.toString()));
     }
 
+  private String randomName() {
+    String[] firstNames = {"Super", "Mega", "Fire", "Water"};
+    String[] lastNames = {"man", "woman", "boy", "girl"};
+    StringBuilder sb = new StringBuilder();
+    sb.append(firstNames[random.nextInt(firstNames.length)])
+        .append(lastNames[random.nextInt(lastNames.length)]);
 
-    @Override
+    return sb.toString();
+  }
+
+
+  @Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	String payload = message.getPayload();
         if ("west".equals(payload)) {

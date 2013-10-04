@@ -36,10 +36,12 @@ public class Hero {
     private Map head;
     private final Deque<Map> tail = new ArrayDeque<Map>();
     private final String hexColor;
+    private final String name;
 
-    public Hero(int id, WebSocketSession session) {
+    public Hero(int id, String name, WebSocketSession session) {
         this.id = id;
         this.session = session;
+        this.name = name;
         this.hexColor = HeroUtils.getRandomHexColor();
         resetState();
     }

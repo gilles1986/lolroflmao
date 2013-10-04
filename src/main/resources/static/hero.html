@@ -72,6 +72,23 @@
         Game.direction = 'none';
         Game.gridSize = 10;
 
+        charset = new CharacterSet("img/chars4.png");
+
+        function CharacterSet(url) {
+
+          var drawing = new Image();
+          drawing.src = url;
+
+          this.set = drawing;
+
+          this.onLoad = function() {};
+
+          drawing.onload = function() {
+            I.onLoad(I);
+          };
+
+          var I = this;
+        }
 
 
         function Hero() {
@@ -235,7 +252,7 @@
 
         Game.updateHero = function(id, location) {
             if (typeof Game.entities[id] != "undefined") {
-                Game.entities[id].location = location;
+                Game.entities[id].location = location[0];
             }
         };
 

@@ -24,7 +24,7 @@ import lolroflmao.web.socket.TextMessage;
 import lolroflmao.web.socket.WebSocketSession;
 
 
-public class Snake {
+public class Hero {
 
     private static final int DEFAULT_LENGTH = 5;
 
@@ -37,7 +37,7 @@ public class Snake {
     private final Deque<Location> tail = new ArrayDeque<Location>();
     private final String hexColor;
 
-    public Snake(int id, WebSocketSession session) {
+    public Hero(int id, WebSocketSession session) {
         this.id = id;
         this.session = session;
         this.hexColor = SnakeUtils.getRandomHexColor();
@@ -66,7 +66,7 @@ public class Snake {
     	session.sendMessage(new TextMessage(msg));
     }
 
-    public synchronized void update(Collection<Snake> snakes) throws Exception {
+    public synchronized void update(Collection<Hero> snakes) throws Exception {
         Location nextLocation = head.getAdjacentLocation(direction);
         if (nextLocation.x >= SnakeUtils.PLAYFIELD_WIDTH) {
             nextLocation.x = 0;
@@ -91,8 +91,8 @@ public class Snake {
         handleCollisions(snakes);
     }
 
-    private void handleCollisions(Collection<Snake> snakes) throws Exception {
-        for (Snake snake : snakes) {
+    private void handleCollisions(Collection<Hero> snakes) throws Exception {
+        for (Hero snake : snakes) {
             boolean headCollision = id != snake.id && snake.getHead().equals(head);
             boolean tailCollision = snake.getTail().contains(head);
             if (headCollision || tailCollision) {

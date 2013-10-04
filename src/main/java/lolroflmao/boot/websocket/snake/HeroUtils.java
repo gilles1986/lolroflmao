@@ -19,7 +19,7 @@ package lolroflmao.boot.websocket.snake;
 import java.awt.Color;
 import java.util.Random;
 
-public class SnakeUtils {
+public class HeroUtils {
 
     public static final int PLAYFIELD_WIDTH = 640;
     public static final int PLAYFIELD_HEIGHT = 480;

@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.snake;
+package lolroflmao.boot.websocket.hero;
 
 import java.awt.Color;
 import java.util.Random;
 
-public class SnakeUtils {
+public class HeroUtils {
 
     public static final int PLAYFIELD_WIDTH = 640;
     public static final int PLAYFIELD_HEIGHT = 480;

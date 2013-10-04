@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.snake;
+package lolroflmao.boot.websocket.hero;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -27,21 +27,21 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 
 /**
- * Sets up the timer for the multi-player snake game WebSocket example.
+ * Sets up the timer for the multi-player hero game WebSocket example.
  */
-public class SnakeTimer {
+public class HeroTimer {
 
     private static final Log log =
-            LogFactory.getLog(SnakeTimer.class);
+            LogFactory.getLog(HeroTimer.class);
 
     private static Timer gameTimer = null;
 
     private static final long TICK_DELAY = 100;
 
-    private static final ConcurrentHashMap<Integer, Snake> snakes =
-            new ConcurrentHashMap<Integer, Snake>();
+    private static final ConcurrentHashMap<Integer, Hero> snakes =
+            new ConcurrentHashMap<Integer, Hero>();
 
-    public static synchronized void addSnake(Snake snake) {
+    public static synchronized void addSnake(Hero snake) {
         if (snakes.size() == 0) {
             startTimer();
         }
@@ -49,12 +49,12 @@ public class SnakeTimer {
     }
 
 
-    public static Collection<Snake> getSnakes() {
+    public static Collection<Hero> getSnakes() {
         return Collections.unmodifiableCollection(snakes.values());
     }
 
 
-    public static synchronized void removeSnake(Snake snake) {
+    public static synchronized void removeSnake(Hero snake) {
         snakes.remove(Integer.valueOf(snake.getId()));
         if (snakes.size() == 0) {
             stopTimer();
@@ -64,10 +64,10 @@ public class SnakeTimer {
 
     public static void tick() throws Exception {
         StringBuilder sb = new StringBuilder();
-        for (Iterator<Snake> iterator = SnakeTimer.getSnakes().iterator();
+        for (Iterator<Hero> iterator = HeroTimer.getSnakes().iterator();
                 iterator.hasNext();) {
-            Snake snake = iterator.next();
-            snake.update(SnakeTimer.getSnakes());
+            Hero snake = iterator.next();
+            snake.update(HeroTimer.getSnakes());
             sb.append(snake.getLocationsJson());
             if (iterator.hasNext()) {
                 sb.append(',');
@@ -78,14 +78,14 @@ public class SnakeTimer {
     }
 
     public static void broadcast(String message) throws Exception {
-        for (Snake snake : SnakeTimer.getSnakes()) {
+        for (Hero snake : HeroTimer.getSnakes()) {
             snake.sendMessage(message);
         }
     }
 
 
     public static void startTimer() {
-        gameTimer = new Timer(SnakeTimer.class.getSimpleName() + " Timer");
+        gameTimer = new Timer(HeroTimer.class.getSimpleName() + " Timer");
         gameTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

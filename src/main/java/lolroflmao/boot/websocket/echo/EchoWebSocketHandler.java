@@ -1,13 +1,13 @@
-package org.springframework.boot.samples.websocket.echo;
+package lolroflmao.boot.websocket.echo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.adapter.TextWebSocketHandlerAdapter;
+import lolroflmao.beans.factory.annotation.Autowired;
+import lolroflmao.web.socket.CloseStatus;
+import lolroflmao.web.socket.TextMessage;
+import lolroflmao.web.socket.WebSocketHandler;
+import lolroflmao.web.socket.WebSocketSession;
+import lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
 
 /**
  * Echo messages by implementing a Spring {@link WebSocketHandler} abstraction.

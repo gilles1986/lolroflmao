@@ -14,19 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.boot.samples.websocket.snake;
+package lolroflmao.boot.websocket.hero;
 
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.adapter.TextWebSocketHandlerAdapter;
+import lolroflmao.web.socket.CloseStatus;
+import lolroflmao.web.socket.TextMessage;
+import lolroflmao.web.socket.WebSocketSession;
+import lolroflmao.web.socket.adapter.TextWebSocketHandlerAdapter;
 
-public class SnakeWebSocketHandler extends TextWebSocketHandlerAdapter {
+public class HeroWebSocketHandler extends TextWebSocketHandlerAdapter {
 
     public static final int PLAYFIELD_WIDTH = 640;
     public static final int PLAYFIELD_HEIGHT = 480;
@@ -37,7 +37,7 @@ public class SnakeWebSocketHandler extends TextWebSocketHandlerAdapter {
 
 
     private final int id;
-    private Snake snake;
+    private Hero snake;
 
     public static String getRandomHexColor() {
         float hue = random.nextFloat();
@@ -64,26 +64,26 @@ public class SnakeWebSocketHandler extends TextWebSocketHandlerAdapter {
         return value;
     }
 
-    public SnakeWebSocketHandler() {
+    public HeroWebSocketHandler() {
         this.id = snakeIds.getAndIncrement();
     }
 
 
     @Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        this.snake = new Snake(id, session);
-        SnakeTimer.addSnake(snake);
+        this.snake = new Hero(id, session);
+        HeroTimer.addSnake(snake);
         StringBuilder sb = new StringBuilder();
-        for (Iterator<Snake> iterator = SnakeTimer.getSnakes().iterator();
+        for (Iterator<Hero> iterator = HeroTimer.getSnakes().iterator();
                 iterator.hasNext();) {
-            Snake snake = iterator.next();
+            Hero snake = iterator.next();
             sb.append(String.format("{id: %d, color: '%s'}",
                     Integer.valueOf(snake.getId()), snake.getHexColor()));
             if (iterator.hasNext()) {
                 sb.append(',');
             }
         }
-        SnakeTimer.broadcast(String.format("{'type': 'join','data':[%s]}",
+        HeroTimer.broadcast(String.format("{'type': 'join','data':[%s]}",
                 sb.toString()));
     }
 
@@ -105,8 +105,8 @@ public class SnakeWebSocketHandler extends TextWebSocketHandlerAdapter {
 
     @Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        SnakeTimer.removeSnake(snake);
-        SnakeTimer.broadcast(String.format("{'type': 'leave', 'id': %d}",
+        HeroTimer.removeSnake(snake);
+        HeroTimer.broadcast(String.format("{'type': 'leave', 'id': %d}",
                 Integer.valueOf(id)));
     }
 }
